@@ -22,6 +22,11 @@ const nextConfig = {
     ignoreBuildErrors: true,
   },
   
+  // Disable server components
+  experimental: {
+    serverComponents: false,
+  },
+  
   // CORS headers for API routes
   async headers() {
     return [

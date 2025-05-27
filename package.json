@@ -9,7 +9,7 @@
     "lint": "next lint",
     "server": "node server/index.js",
     "dev:all": "concurrently \"npm run dev\" \"npm run server\"",
-    "postinstall": "netlify-lambda install"
+    "export": "next export"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.0",
