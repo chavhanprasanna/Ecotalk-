@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # EchoSpace - Anonymous Voice & Video Chat Platform
 
 EchoSpace is an open-source platform for anonymous voice and video chat, inspired by Free4Talk with a modern UI design. The platform allows users to join conversation rooms instantly with no login required, connecting with people around the world through voice, video, and text.
@@ -112,3 +113,6 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 ## License
 
 This project is licensed under the MIT License - see the LICENSE file for details.
+=======
+# Ecotalk-
+>>>>>>> 4d9e9365d6715e3d2d0a89e586ef7c5ac39e739b
