@@ -1,0 +1,12 @@
+{
+  "buildCommand": "npm run build",
+  "outputDirectory": ".next",
+  "framework": "nextjs",
+  "installCommand": "npm install",
+  "regions": ["sin1"],
+  "env": {
+    "NEXT_PUBLIC_SUPABASE_URL": "https://hhxlbwkhsogifgwlxuru.supabase.co",
+    "NEXT_PUBLIC_SUPABASE_ANON_KEY": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhoeGxid2toc29naWZnd2x4dXJ1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDgzMjcwMDEsImV4cCI6MjA2MzkwMzAwMX0.XehmZ9I1UU-nyL73NyfXzbuOA5qc-Je8QGQEUNbDcko",
+    "NEXT_PUBLIC_API_URL": "https://ecotalk-server.up.railway.app"
+  }
+}
