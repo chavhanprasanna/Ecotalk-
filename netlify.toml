@@ -1,6 +1,6 @@
 [build]
-  command = "npm run build"
-  publish = "out"
+  command = "CI= npm run build"
+  publish = ".next"
 
 [build.environment]
   NODE_VERSION = "20"
@@ -13,23 +13,12 @@
   NEXT_PUBLIC_SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhoeGxid2toc29naWZnd2x4dXJ1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDgzMjcwMDEsImV4cCI6MjA2MzkwMzAwMX0.XehmZ9I1UU-nyL73NyfXzbuOA5qc-Je8QGQEUNbDcko"
   NEXT_PUBLIC_API_URL = "https://ecotalk-server.onrender.com"
 
-# For Single Page Applications
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
+
+# For client-side routing
 [[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
-
-# Handle client-side routing
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
-
-# Add security headers
-[[headers]]
-  for = "/*"
-  [headers.values]
-    X-Frame-Options = "DENY"
-    X-Content-Type-Options = "nosniff"
-    X-XSS-Protection = "1; mode=block"
-    Referrer-Policy = "strict-origin-when-cross-origin"
+  force = false
