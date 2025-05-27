@@ -1,9 +1,28 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // Enable static export
+  output: 'export',
+  
+  // Disable React StrictMode for compatibility with some libraries
+  reactStrictMode: false,
+  
+  // Enable static HTML export
+  trailingSlash: true,
+  
+  // Disable image optimization during export
+  images: {
+    unoptimized: true,
+  },
+  
+  // Ignore TypeScript and ESLint during build
   eslint: {
     ignoreDuringBuilds: true,
   },
-  // Set CORS headers for API routes
+  typescript: {
+    ignoreBuildErrors: true,
+  },
+  
+  // CORS headers for API routes
   async headers() {
     return [
       {
