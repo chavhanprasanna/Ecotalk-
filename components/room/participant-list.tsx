@@ -1,9 +1,9 @@
 'use client';
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Mic, MicOff, Crown, MoreHorizontal } from 'lucide-react';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
+import { SafeAvatar } from '@/components/ui/safe-avatar';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -59,10 +59,11 @@ export default function ParticipantList({ participants, localUserId }: Participa
           className="flex items-center justify-between p-2 rounded-lg hover:bg-muted/50 transition-colors"
         >
           <div className="flex items-center gap-3">
-            <Avatar>
-              <AvatarImage src={generateRandomAvatar(participant.name)} alt={participant.name} />
-              <AvatarFallback>{participant.name.substring(0, 2)}</AvatarFallback>
-            </Avatar>
+            <SafeAvatar 
+              src={generateRandomAvatar(participant.name)} 
+              alt={participant.name} 
+              fallbackText={participant.name} 
+            />
             
             <div className="flex flex-col">
               <div className="flex items-center gap-1.5">

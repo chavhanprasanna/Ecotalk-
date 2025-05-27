@@ -1,9 +1,9 @@
 'use client';
 
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import { Mic, MicOff, Video, VideoOff, Crown } from 'lucide-react';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { generateRandomAvatar } from '@/lib/utils';
+import { SafeAvatar } from '@/components/ui/safe-avatar';
+import { ClientOnly } from '@/components/client-only';
 
 interface Participant {
   id: string;
@@ -23,6 +23,7 @@ interface UserVideoProps {
 
 export default function UserVideo({ participant, stream, isLocal }: UserVideoProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
+  const [avatarUrl, setAvatarUrl] = useState<string>('');
   
   // Set up video stream when available
   useEffect(() => {
@@ -30,6 +31,20 @@ export default function UserVideo({ participant, stream, isLocal }: UserVideoPro
       videoRef.current.srcObject = stream;
     }
   }, [stream]);
+  
+  // Generate avatar URL on client-side only to avoid hydration mismatch
+  useEffect(() => {
+    // Use the avatar from the participant if it's already a URL
+    if (participant.avatar && participant.avatar.startsWith('http')) {
+      setAvatarUrl(participant.avatar);
+    } else {
+      // Otherwise, generate a consistent avatar based on the name
+      const name = participant.name;
+      // Simple hash function to get a consistent number from a string
+      const hash = name.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
+      setAvatarUrl(`https://api.dicebear.com/6.x/bottts/svg?seed=${hash}&backgroundColor=b6e3f4,c0aede,d1d4f9`);
+    }
+  }, [participant.name, participant.avatar]);
   
   return (
     <div 
@@ -47,13 +62,14 @@ export default function UserVideo({ participant, stream, isLocal }: UserVideoPro
         />
       ) : (
         <div className="w-full h-full flex items-center justify-center">
-          <Avatar className="h-20 w-20 sm:h-24 sm:w-24">
-            <AvatarImage src={generateRandomAvatar(participant.name)} alt={participant.name} />
-            <AvatarFallback>
-              {/* Use a client-side only approach to prevent hydration mismatch */}
-              {typeof window !== 'undefined' ? participant.name.substring(0, 2) : ''}
-            </AvatarFallback>
-          </Avatar>
+          <ClientOnly>
+            <SafeAvatar
+              src={avatarUrl}
+              alt={participant.name}
+              fallbackText={participant.name}
+              className="h-20 w-20 sm:h-24 sm:w-24"
+            />
+          </ClientOnly>
         </div>
       )}
       
