@@ -18,17 +18,20 @@ const nextConfig = {
   eslint: {
     ignoreDuringBuilds: true,
   },
+  
   typescript: {
     ignoreBuildErrors: true,
   },
   
   // Disable server components
   experimental: {
-    serverComponents: false,
-  },
-  
-  // CORS headers for API routes
-  async headers() {
+    // No experimental features needed for now
+  }
+};
+
+// Only include headers in development
+if (process.env.NODE_ENV !== 'production') {
+  nextConfig.headers = async () => {
     return [
       {
         source: '/api/:path*',
@@ -40,7 +43,7 @@ const nextConfig = {
         ],
       },
     ];
-  },
-};
+  };
+}
 
 module.exports = nextConfig;
