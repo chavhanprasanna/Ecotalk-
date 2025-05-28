@@ -1,7 +1,7 @@
 <<<<<<< HEAD
-# EchoSpace - Anonymous Voice & Video Chat Platform
+# Echotalk - Anonymous Voice & Video Chat Platform
 
-EchoSpace is a modern anonymous voice and video chat platform that enables real-time communication without the need for user accounts. It features a clean, intuitive interface and robust real-time communication capabilities.
+Echotalk is a modern anonymous voice and video chat platform that enables real-time communication without the need for user accounts. It features a clean, intuitive interface and robust real-time communication capabilities.
 
 ## Features
 
